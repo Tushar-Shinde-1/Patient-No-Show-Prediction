@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Patient No-Show Predictive System — Model Performance Dashboard with CRISP-ML(Q) analysis, model comparison, and feature importance.">
+    <title>Model Dashboard — No-Show Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────────── -->
+<nav class="navbar">
+    <div class="navbar-brand">
+        <span class="icon">🏥</span> No-Show Predictor
+    </div>
+    <div class="navbar-links">
+        <a href="/" class="active">📊 Dashboard</a>
+        <a href="/predict">🔮 Predict</a>
+    </div>
+</nav>
+
+<!-- ── Main Content ───────────────────────────────────────────── -->
+<div class="container">
+
+    <div class="section-header">
+        <h1>Model Performance Dashboard</h1>
+        <p>Comprehensive analysis built on the CRISP-ML(Q) methodology</p>
+    </div>
+
+    <!-- Best Model Metrics -->
+    <div class="metrics-row">
+        <div class="metric-card">
+            <div class="label">Best Model</div>
+            <div class="value" id="best-model-name" style="font-size:1.15rem;">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Accuracy</div>
+            <div class="value" id="best-accuracy">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Precision</div>
+            <div class="value" id="best-precision">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">Recall</div>
+            <div class="value" id="best-recall">—</div>
+        </div>
+        <div class="metric-card">
+            <div class="label">F1-Score</div>
+            <div class="value" id="best-f1">—</div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-overview">Overview</button>
+        <button class="tab-btn" data-tab="tab-comparison">Model Comparison</button>
+        <button class="tab-btn" data-tab="tab-generalization">Generalization</button>
+        <button class="tab-btn" data-tab="tab-features">Feature Importance</button>
+    </div>
+
+    <!-- ─── Tab: Overview ──────────────────────────────────────── -->
+    <div id="tab-overview" class="tab-content active">
+        <div class="glass-card">
+            <h2>📋 CRISP-ML(Q) Executive Summary</h2>
+            <p>
+                This project follows the <strong>Cross-Industry Standard Process for Machine Learning with
+                Quality Assurance (CRISP-ML(Q))</strong> framework to build a predictive system for patient
+                appointment no-shows.
+            </p>
+
+            <h3>Problem Statement</h3>
+            <p>
+                Missed medical appointments result in financial losses, resource misallocation, and
+                longer wait times. Approximately <strong>20%</strong> of scheduled appointments result
+                in no-shows, costing healthcare systems billions annually.
+            </p>
+
+            <h3>Our Approach</h3>
+            <ul>
+                <li><strong>Data Preparation:</strong> Cleaned ~110 K records, engineered temporal features
+                    (WaitingTime, DayOfWeek, Month), encoded categoricals, and normalised numerics.</li>
+                <li><strong>Model Engineering:</strong> Trained and compared four algorithms —
+                    Logistic Regression, Decision Tree, Random Forest, and XGBoost.</li>
+                <li><strong>Evaluation:</strong> Selected the highest-accuracy model to optimise
+                    overall prediction correctness on unseen data.</li>
+                <li><strong>Deployment:</strong> Flask-based web application with a real-time
+                    prediction interface for hospital staff.</li>
+            </ul>
+
+            <h3>Key Findings</h3>
+            <ul>
+                <li><strong>WaitingTime</strong> is the single most important predictor — longer
+                    gaps between booking and appointment increase no-show risk.</li>
+                <li><strong>Age</strong> and <strong>SMS reminders</strong> are the next most
+                    impactful features.</li>
+                <li>Neighbourhood-level patterns suggest accessibility plays a significant role.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ─── Tab: Model Comparison ──────────────────────────────── -->
+    <div id="tab-comparison" class="tab-content">
+        <div class="glass-card">
+            <h2>📊 Model Comparison</h2>
+            <p>
+                Four classification algorithms were trained on 80 % of the dataset and evaluated on
+                the remaining 20 %.  The chart below compares accuracy, precision, recall, and F1-score
+                across all models.
+            </p>
+            <div class="chart-wrapper">
+                <canvas id="chartComparison"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Tab: Generalization ────────────────────────────────── -->
+    <div id="tab-generalization" class="tab-content">
+        <div class="glass-card">
+            <h2>🧪 Generalization Analysis</h2>
+            <p>
+                Overfitting occurs when a model memorises the training data instead of learning
+                generalisable patterns. We compare <strong>training accuracy</strong> vs.
+                <strong>test accuracy</strong> — a large gap indicates overfitting.
+            </p>
+
+            <table class="gen-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Train Accuracy</th>
+                        <th>Test Accuracy</th>
+                        <th>Gap</th>
+                        <th>Verdict</th>
+                    </tr>
+                </thead>
+                <tbody id="gen-table-body">
+                    <!-- filled by JS -->
+                </tbody>
+            </table>
+
+            <h3>Interpretation</h3>
+            <p>
+                A gap of <strong>&lt; 5 percentage points</strong> between train and test accuracy
+                suggests the model generalises well.  Decision Trees tend to overfit without depth
+                limits, whereas Logistic Regression is often too simple to overfit.
+            </p>
+        </div>
+    </div>
+
+    <!-- ─── Tab: Feature Importance ────────────────────────────── -->
+    <div id="tab-features" class="tab-content">
+        <div class="glass-card">
+            <h2>🔬 Feature Importance</h2>
+            <p>
+                The chart shows the relative importance of the top predictive features from the
+                best-performing model.  Higher values indicate a stronger influence on the
+                model's No-Show prediction.
+            </p>
+            <div class="chart-wrapper">
+                <canvas id="chartFeatures"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    Patient No-Show Predictive System &copy; 2026 &mdash; Built with CRISP-ML(Q) Methodology
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

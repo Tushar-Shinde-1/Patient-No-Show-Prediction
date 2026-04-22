@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+xgboost
+joblib
+flask
+supabase
+python-dotenv
+python-docx
+imbalanced-learn
+gunicorn

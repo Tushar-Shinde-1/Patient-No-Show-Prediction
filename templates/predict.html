@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Patient No-Show Predictor — Enter patient details to get an instant risk assessment for appointment no-shows.">
+    <title>Predict No-Show — No-Show Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- ── Navigation ─────────────────────────────────────────────── -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="icon">🏥</span> No-Show Predictor
+        </div>
+        <div class="navbar-links">
+            <a href="/">📊 Dashboard</a>
+            <a href="/predict" class="active">🔮 Predict</a>
+        </div>
+    </nav>
+
+    <!-- ── Main Content ───────────────────────────────────────────── -->
+    <div class="container">
+
+        <div class="section-header">
+            <h1>Patient No-Show Predictor</h1>
+            <p>Enter patient details below to get an instant risk assessment</p>
+        </div>
+
+        <form id="predict-form" class="glass-card">
+            <div class="form-grid">
+
+                <!-- Column 1: Demographics -->
+                <div>
+                    <h2>👤 Demographics</h2>
+
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" min="0" max="120" value="30" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="F">Female</option>
+                            <option value="M">Male</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neighbourhood">Neighbourhood</label>
+                        <select id="neighbourhood" name="neighbourhood">
+                            <option value="JARDIM DA PENHA">Jardim da Penha</option>
+                            <option value="JARDIM CAMBURI">Jardim Camburi</option>
+                            <option value="CENTRO">Centro</option>
+                            <option value="MARIA ORTIZ">Maria Ortiz</option>
+                            <option value="RESISTÊNCIA">Resistência</option>
+                            <option value="MONDONGO">Mondongo</option>
+                            <option value="SANTA MARTHA">Santa Martha</option>
+                            <option value="SANTOS DUMONT">Santos Dumont</option>
+                            <option value="ITARARÉ">Itararé</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Column 2: Medical History -->
+                <div>
+                    <h2>🩺 Medical History</h2>
+
+                    <div class="form-group">
+                        <label for="hipertension">Hypertension</label>
+                        <select id="hipertension" name="hipertension">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diabetes">Diabetes</label>
+                        <select id="diabetes" name="diabetes">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alcoholism">Alcoholism</label>
+                        <select id="alcoholism" name="alcoholism">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="handcap">Handicap Count</label>
+                        <select id="handcap" name="handcap">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Column 3: Appointment Details -->
+                <div>
+                    <h2>📅 Appointment Details</h2>
+
+                    <div class="form-group">
+                        <label for="waiting_time">Waiting Time (Days)</label>
+                        <input type="number" id="waiting_time" name="waiting_time" min="0" value="5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sms_received">SMS Reminder Received?</label>
+                        <select id="sms_received" name="sms_received">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scholarship">Bolsa Família Scholarship?</label>
+                        <select id="scholarship" name="scholarship">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="day_of_week">Appointment Day</label>
+                        <select id="day_of_week" name="day_of_week">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday" selected>Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="month">Appointment Month</label>
+                        <select id="month" name="month">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5" selected>May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 24px;">
+                <button type="submit" class="btn-primary">
+                    🔮 Predict No-Show Risk
+                </button>
+            </div>
+        </form>
+
+        <!-- ── Result Panel ───────────────────────────────────────── -->
+        <div id="result-panel" class="glass-card">
+            <h2>📋 Prediction Results</h2>
+
+            <div class="result-grid">
+                <div class="result-card">
+                    <div class="label">No-Show Probability</div>
+                    <div class="value" id="res-probability">—</div>
+                </div>
+                <div class="result-card">
+                    <div class="label">Classification</div>
+                    <div class="value" id="res-label">—</div>
+                </div>
+                <div class="result-card risk-low">
+                    <div class="label">Risk Level</div>
+                    <div class="value" id="res-risk">—</div>
+                </div>
+            </div>
+
+            <div id="res-action" class="action-box show">
+                —
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        Patient No-Show Predictive System &copy; 2026 &mdash; Built with CRISP-ML(Q) Methodology
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

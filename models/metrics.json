@@ -1,0 +1,71 @@
+{
+  "best_model": "Random Forest",
+  "models": {
+    "Random Forest": {
+      "accuracy": 0.7278,
+      "precision": 0.6733,
+      "recall": 0.8852,
+      "f1_score": 0.7648,
+      "roc_auc": 0.8157,
+      "train_accuracy": 0.7865
+    },
+    "XGBoost": {
+      "accuracy": 0.7045,
+      "precision": 0.6521,
+      "recall": 0.8767,
+      "f1_score": 0.7479,
+      "roc_auc": 0.8083,
+      "train_accuracy": 0.745
+    }
+  },
+  "feature_importances": [
+    {
+      "Feature": "WaitingTime",
+      "Importance": 0.6029319096045456
+    },
+    {
+      "Feature": "Age",
+      "Importance": 0.2882422105633632
+    },
+    {
+      "Feature": "SMS_received",
+      "Importance": 0.03336632259839829
+    },
+    {
+      "Feature": "AppointmentMonth",
+      "Importance": 0.01863751864203017
+    },
+    {
+      "Feature": "Hipertension",
+      "Importance": 0.009230330528973532
+    },
+    {
+      "Feature": "Neighbourhood_SANTOS DUMONT",
+      "Importance": 0.008003251273720932
+    },
+    {
+      "Feature": "Scholarship",
+      "Importance": 0.007459318767124325
+    },
+    {
+      "Feature": "Diabetes",
+      "Importance": 0.006947507102543517
+    },
+    {
+      "Feature": "Neighbourhood_SANTA MARTHA",
+      "Importance": 0.006883280331668482
+    },
+    {
+      "Feature": "Neighbourhood_JESUS DE NAZARETH",
+      "Importance": 0.0064215869678556185
+    },
+    {
+      "Feature": "Neighbourhood_ITARAR\u00c9",
+      "Importance": 0.006360989150895254
+    },
+    {
+      "Feature": "Neighbourhood_JARDIM DA PENHA",
+      "Importance": 0.005515774468881003
+    }
+  ]
+}
