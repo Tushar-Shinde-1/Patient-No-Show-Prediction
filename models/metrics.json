@@ -2,70 +2,70 @@
   "best_model": "Random Forest",
   "models": {
     "Random Forest": {
-      "accuracy": 0.7278,
-      "precision": 0.6733,
-      "recall": 0.8852,
-      "f1_score": 0.7648,
-      "roc_auc": 0.8157,
-      "train_accuracy": 0.7865
+      "accuracy": 0.7239,
+      "precision": 0.6663,
+      "recall": 0.8967,
+      "f1_score": 0.7646,
+      "roc_auc": 0.8153,
+      "train_accuracy": 0.7867
     },
     "XGBoost": {
-      "accuracy": 0.7045,
-      "precision": 0.6521,
-      "recall": 0.8767,
+      "accuracy": 0.6996,
+      "precision": 0.6442,
+      "recall": 0.8914,
       "f1_score": 0.7479,
-      "roc_auc": 0.8083,
-      "train_accuracy": 0.745
+      "roc_auc": 0.8073,
+      "train_accuracy": 0.7445
     }
   },
   "feature_importances": [
     {
       "Feature": "WaitingTime",
-      "Importance": 0.6029319096045456
+      "Importance": 0.6021894885746502
     },
     {
       "Feature": "Age",
-      "Importance": 0.2882422105633632
+      "Importance": 0.2882825355441713
     },
     {
       "Feature": "SMS_received",
-      "Importance": 0.03336632259839829
+      "Importance": 0.033456089159419604
     },
     {
       "Feature": "AppointmentMonth",
-      "Importance": 0.01863751864203017
+      "Importance": 0.018661855158542705
     },
     {
       "Feature": "Hipertension",
-      "Importance": 0.009230330528973532
+      "Importance": 0.009288229037859226
     },
     {
       "Feature": "Neighbourhood_SANTOS DUMONT",
-      "Importance": 0.008003251273720932
+      "Importance": 0.008051592919858802
     },
     {
       "Feature": "Scholarship",
-      "Importance": 0.007459318767124325
+      "Importance": 0.007363260536031251
     },
     {
       "Feature": "Diabetes",
-      "Importance": 0.006947507102543517
+      "Importance": 0.0070666816430094495
     },
     {
       "Feature": "Neighbourhood_SANTA MARTHA",
-      "Importance": 0.006883280331668482
-    },
-    {
-      "Feature": "Neighbourhood_JESUS DE NAZARETH",
-      "Importance": 0.0064215869678556185
+      "Importance": 0.006902909895764031
     },
     {
       "Feature": "Neighbourhood_ITARAR\u00c9",
-      "Importance": 0.006360989150895254
+      "Importance": 0.0065132841604211515
+    },
+    {
+      "Feature": "Neighbourhood_JESUS DE NAZARETH",
+      "Importance": 0.006513249076657586
     },
     {
       "Feature": "Neighbourhood_JARDIM DA PENHA",
-      "Importance": 0.005515774468881003
+      "Importance": 0.005710824293614729
     }
   ]
 }
