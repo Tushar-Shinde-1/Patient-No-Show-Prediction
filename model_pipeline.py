@@ -67,10 +67,13 @@ def load_and_preprocess_data(data):
     # Target: 'No' -> 0 (Show), 'Yes' -> 1 (No-Show)
     # Handle cases where Supabase might already have 0/1 or 'No'/'Yes'
     if 'No-show' in df.columns:
-        if df['No-show'].dtype == object:
-            df['Target'] = df['No-show'].map({'No': 0, 'Yes': 1})
+        col = df['No-show']
+        if not pd.api.types.is_numeric_dtype(col):
+            # pandas 3.0 uses StringDtype (not object) for string columns,
+            # so we check is_numeric_dtype to handle all pandas versions safely
+            df['Target'] = col.map({'No': 0, 'Yes': 1})
         else:
-            df['Target'] = df['No-show']
+            df['Target'] = col
         df = df.drop(columns=['No-show'])
     elif 'Target' not in df.columns:
         # Fallback if target column name is different
