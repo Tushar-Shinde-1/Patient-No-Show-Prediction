@@ -152,24 +152,25 @@ def main(df=None):
     # ── Define candidate models (Hyperparameter Maps) ──────────
     models = {
         'Random Forest': (
-            RandomForestClassifier(random_state=42, n_jobs=-1),
+            RandomForestClassifier(random_state=42, n_jobs=1),
             {
-                'classifier__n_estimators': [200, 300],
-                'classifier__max_depth': [10, 20],
-                'classifier__min_samples_leaf': [1, 2],
-                'classifier__class_weight': ['balanced', None]
+                'classifier__n_estimators': [50, 100],
+                'classifier__max_depth': [8, 12],
+                'classifier__min_samples_leaf': [2, 4],
+                'classifier__class_weight': ['balanced']
             }
         )
     }
 
     if HAS_XGB:
         models['XGBoost'] = (
-            XGBClassifier(eval_metric='logloss', random_state=42, n_jobs=-1, use_label_encoder=False),
+            XGBClassifier(eval_metric='logloss', random_state=42, n_jobs=1,
+                          tree_method='hist', device='cpu'),
             {
-                'classifier__n_estimators': [100, 200],
-                'classifier__max_depth': [4, 6, 8],
-                'classifier__scale_pos_weight': [spw, spw*0.8, 1.0],
-                'classifier__learning_rate': [0.05, 0.1]
+                'classifier__n_estimators': [100],
+                'classifier__max_depth': [4, 6],
+                'classifier__scale_pos_weight': [spw, 1.0],
+                'classifier__learning_rate': [0.1]
             }
         )
 
